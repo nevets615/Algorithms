@@ -3,7 +3,21 @@
 import sys
 
 def rock_paper_scissors(n):
-  pass 
+  options = [['rock'], ['paper'], ['scissors']]
+
+  def inner(n, arr=[[]], cache={}):
+        newArr = []
+        if n == 0:
+            return arr
+        else:
+            for opt in options:
+                for item in arr:
+                    newArr += [opt + item]
+        plays = inner(n-1, newArr)
+        cache[n] = plays
+        return plays
+
+  return inner(n)
 
 
 if __name__ == "__main__":
